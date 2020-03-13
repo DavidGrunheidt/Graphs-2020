@@ -1,5 +1,5 @@
 class Vertex:
-	def __init__(self, vertex_id: int, vertex_name: str):
+	def __init__(self, vertex_id: str, vertex_name: str):
 		self.vertex_id = vertex_id
 		self.vertex_name = vertex_name
 		self.neighbors = set()
@@ -18,7 +18,7 @@ class Vertex:
 		else:
 			self.degree += 1
 
-	def hasEdgeTo(self, vertex_id: int) -> bool:
+	def hasEdgeTo(self, vertex_id: str) -> bool:
 		return vertex_id in self.neighbors
 
 	def getEdgeWeight(self, vertex_id: str) -> float:
