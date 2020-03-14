@@ -24,10 +24,8 @@ def main():
 
 	maybePath = sys.argv[len(sys.argv)-1]
 
-	instances_folder = "instances"
-	graphs = buildEachInstance(instances_folder)
-
 	if maybePath == "testAll":
+		graphs = buildEachInstance("instances")
 		something_wrong = False
 		for graph in graphs:
 			if len(graphs[graph].vertices) == 0:
@@ -36,8 +34,8 @@ def main():
 		if not something_wrong:
 			print("Everything is right with your inputs")
 	else:
-		graphs["fln_pequena.net"]
-
+		graph_path = "./instances/caminho_minimo/fln_pequena.net"
+		graph = buildGraphFromFile(graph_path)
 
 if __name__ == "__main__":
 	main()

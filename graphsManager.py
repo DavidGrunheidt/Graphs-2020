@@ -50,3 +50,6 @@ def buildGraphFromFile(file_path: str) -> 'Graph':
 				return NotDirectedGraph()
 
 	return graph
+
+def breadthFirstSearch(graph: 'Graph') -> str:
+	pass
