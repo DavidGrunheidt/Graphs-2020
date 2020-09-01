@@ -62,7 +62,7 @@ def main():
 		for graph in graphs:
 			test_graph(graph, graphs[graph])
 	else:
-		graph_path = "./instances/caminho_minimo/fln_pequena.net"
+		graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
 		graph = buildGraphFromFile(graph_path)
 		# test_graph(graph_path, graph)
 		print(breadthFirstSearch(graph, '1'))

@@ -70,7 +70,7 @@ def breadthFirstSearch(graph: NotDirectedGraph, inital_vertex_id: str) -> str:
 			count -= 1
 			if neighbor_id not in visited:
 				visited.add(neighbor_id)
-				queue += [x for x in graph.getVertexNeighbors(neighbor_id) if x not in visited]
+				queue += [x for x in graph.getVertexNeighbors(neighbor_id) if x not in visited and x not in queue]
 				search += neighbor_id + ' '
 		search += '\n'
 		level += 1
