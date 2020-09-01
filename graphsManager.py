@@ -1,12 +1,13 @@
 import os
 from graph import NotDirectedGraph
 
+# ler(arquivo)
 def buildGraphFromFile(file_path: str) -> 'Graph':
 	graph_file = open(file_path, 'r')
 
 	graph = NotDirectedGraph()
 
-	line = graph_file.readline() #ignoring first line
+	graph_file.readline() #ignoring first line
 
 	build_vertices = True
 	for line in graph_file:
@@ -19,14 +20,14 @@ def buildGraphFromFile(file_path: str) -> 'Graph':
 				try:
 					splittedLine = line.split(' ', 1)
 
-					if (len(splittedLine) == 2):
+					if len(splittedLine) == 2:
 						vertexId = splittedLine[0]
 						vertexName = splittedLine[1].replace("\"", "")
 
 						graph.addVertex(vertexId, vertexName)
 					else:
 						raise Exception("Error while building vertex (graph = "+file_path+"): \""+line+"\" isn't in the default template: (id label)")
-				
+
 				except Exception as error:
 					print("(graph = "+file_path+"):"+str(error))
 					return NotDirectedGraph()
@@ -51,5 +52,27 @@ def buildGraphFromFile(file_path: str) -> 'Graph':
 
 	return graph
 
-def breadthFirstSearch(graph: 'Graph') -> str:
-	pass
+def breadthFirstSearch(graph: NotDirectedGraph, inital_vertex_id: str) -> str:
+	visited = set()
+	queue = [inital_vertex_id]
+	search = ''
+	level = 0
+
+	while len(queue) > 0:
+		# nodeCount (queue size). Indicates number of nodes at current level.
+		count = len(queue)
+
+		search += str(level) + ': '
+
+		# Dequeue all nodes of current level and enqueue all nodes of next level.
+		while count > 0:
+			neighbor_id = queue.pop(0)
+			count -= 1
+			if neighbor_id not in visited:
+				visited.add(neighbor_id)
+				queue += [x for x in graph.getVertexNeighbors(neighbor_id) if x not in visited]
+				search += neighbor_id + ' '
+		search += '\n'
+		level += 1
+
+	return search
