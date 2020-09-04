@@ -1,7 +1,12 @@
 import os
 import sys
 import random
-from graphsManager import *
+
+from graph import NotDirectedGraph
+from graph_builder import buildGraphFromFile
+from breath_first_search import breadthFirstSearch
+from eulerian_cycle import getEulerianTour
+
 
 # on the first call to this function you must be SURE that "path" exists in the actual os.listdir()
 def buildEachInstance(path: str) -> 'dict of Graphs':
@@ -25,22 +30,22 @@ def buildEachInstance(path: str) -> 'dict of Graphs':
 def test_graph(path: str, graph: NotDirectedGraph) -> None:
 	print('\nTest Results for Graph in ' + path + ':\n')
 
-	randVertexId = random.choice(list(graph.vertices.keys()))
-	randVertexName = graph.getVertexLabel(randVertexId)
-	randVertexNeighbors = graph.getVertexNeighbors(randVertexId)
-	randVertexRandNeighbor = random.choice(list(randVertexNeighbors))
-	otherRandVertexId0 = random.choice(list(graph.vertices.keys()))
-	otherRandVertexId1 = random.choice(list(graph.vertices.keys()))
+	rand_vertex_id = random.choice(list(graph.vertices.keys()))
+	rand_vertex_name = graph.getVertexLabel(rand_vertex_id)
+	rand_vertex_neighbors = graph.getVertexNeighbors(rand_vertex_id)
+	rand_vertex_rand_neighbor = random.choice(list(rand_vertex_neighbors))
+	other_rand_vertex_id0 = random.choice(list(graph.vertices.keys()))
+	other_rand_vertex_id1 = random.choice(list(graph.vertices.keys()))
 
 	print('Number of vertices = ' + str(graph.getNumberOfVertices()))
 	print('Number of edges = ' + str(graph.getNumberOfEdges()))
-	print('Vertex ' + randVertexId + ' degree = ' + str(graph.getVertexDegree(randVertexId)))
-	print('Vertex ' + randVertexId + ' name = ' + randVertexName)
-	print('Vertex ' + randVertexId + ' neighbors = ' + str(randVertexNeighbors))
-	print('Vertex ' + randVertexId + ' has edge with ' + randVertexRandNeighbor + ' = ' + str(graph.hasEdge(randVertexId, randVertexRandNeighbor)))
-	print('Vertex ' + randVertexId + ' has edge with ' + otherRandVertexId0 + ' = ' + str(graph.hasEdge(randVertexId, otherRandVertexId0)))
-	print('Vertex ' + randVertexId + ' has edge with ' + otherRandVertexId1 + ' = ' + str(graph.hasEdge(randVertexId, otherRandVertexId1)))
-	print('Edge ' + randVertexId + ' <-> ' + randVertexRandNeighbor + ' weight(s) = ' + str(graph.weight(randVertexId, randVertexRandNeighbor)))
+	print('Vertex ' + rand_vertex_id + ' degree = ' + str(graph.getVertexDegree(rand_vertex_id)))
+	print('Vertex ' + rand_vertex_id + ' name = ' + rand_vertex_name)
+	print('Vertex ' + rand_vertex_id + ' neighbors = ' + str(rand_vertex_neighbors))
+	print('Vertex ' + rand_vertex_id + ' has edge with ' + rand_vertex_rand_neighbor + ' = ' + str(graph.hasEdge(rand_vertex_id, rand_vertex_rand_neighbor)))
+	print('Vertex ' + rand_vertex_id + ' has edge with ' + other_rand_vertex_id0 + ' = ' + str(graph.hasEdge(rand_vertex_id, other_rand_vertex_id0)))
+	print('Vertex ' + rand_vertex_id + ' has edge with ' + other_rand_vertex_id1 + ' = ' + str(graph.hasEdge(rand_vertex_id, other_rand_vertex_id1)))
+	print('Edge ' + rand_vertex_id + ' <-> ' + rand_vertex_rand_neighbor + ' weight(s) = ' + str(graph.weight(rand_vertex_id, rand_vertex_rand_neighbor)))
 
 	print('\nEnd of tests for ' + path)
 	print('---------------------------------------------')
@@ -64,8 +69,10 @@ def main():
 	else:
 		graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
 		graph = buildGraphFromFile(graph_path)
+
 		# test_graph(graph_path, graph)
-		print(breadthFirstSearch(graph, '1'))
+		# print(breadthFirstSearch(graph, '1')[0])
+		print(getEulerianTour(graph))
 
 if __name__ == "__main__":
 	main()

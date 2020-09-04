@@ -1,1 +1,1 @@
-python3 main.py graph.py vertex.py $1
+python3 main.py $1
