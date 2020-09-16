@@ -6,6 +6,7 @@ from graph import NotDirectedGraph
 from graph_builder import buildGraphFromFile
 from breath_first_search import breadthFirstSearch
 from eulerian_cycle import getEulerianTour
+from shortest_path import dijkstra
 
 
 # on the first call to this function you must be SURE that "path" exists in the actual os.listdir()
@@ -47,11 +48,7 @@ def test_graph(path: str, graph: NotDirectedGraph) -> None:
 	print('Vertex ' + rand_vertex_id + ' has edge with ' + other_rand_vertex_id1 + ' = ' + str(graph.hasEdge(rand_vertex_id, other_rand_vertex_id1)))
 	print('Edge ' + rand_vertex_id + ' <-> ' + rand_vertex_rand_neighbor + ' weight(s) = ' + str(graph.weight(rand_vertex_id, rand_vertex_rand_neighbor)))
 
-	print('\nEnd of tests for ' + path)
-	print('---------------------------------------------')
-
 def main():
-
 	maybePath = sys.argv[len(sys.argv)-1]
 
 	if maybePath == "testAll":
@@ -63,16 +60,28 @@ def main():
 				return
 
 		print("Nothing wrong with the inputs.\nStarting tests...\n")
-
-		for graph in graphs:
-			test_graph(graph, graphs[graph])
 	else:
+		# Exercicio 1:
+		print('Exercicio 1 (Funções De Grafos):')
+		graph_path = "./instances/caminho_minimo/fln_pequena.net"
+		graph = buildGraphFromFile(graph_path)
+		test_graph(graph_path, graph)
+
+		#Exercicio 2:
+		print('\nExercicio 2 (Busca em largura):\n')
+		print(breadthFirstSearch(graph, '1')[0])
+
+		#Exercicio 3:
+		print('\nExercicio 3 (Ciclo Euleriano):\n')
 		graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
 		graph = buildGraphFromFile(graph_path)
-
-		# test_graph(graph_path, graph)
-		# print(breadthFirstSearch(graph, '1')[0])
 		print(getEulerianTour(graph))
+
+		#Exercicio 4:
+		print('\nExercicio 4 (Dijkstra):\n')
+		graph_path = "./instances/caminho_minimo/fln_pequena.net"
+		graph = buildGraphFromFile(graph_path)
+		print(dijkstra(graph, '1'))
 
 if __name__ == "__main__":
 	main()
