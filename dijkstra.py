@@ -1,7 +1,8 @@
 from graph import NotDirectedGraph
+from typing import Union
 
 # Exercicio 4: Algoritmo de  Dijkstra
-def dijkstra(graph: NotDirectedGraph, src_id: str) -> str:
+def dijkstra(graph: NotDirectedGraph, src_id: str, calculate_outputs: bool) -> Union[str, dict]:
     dists = dict()
     for vertex_id in graph.vertices:
         dists[vertex_id] = {'min_distance': float("inf"), 'parent': '-1', 'in_queue': True}
@@ -24,7 +25,10 @@ def dijkstra(graph: NotDirectedGraph, src_id: str) -> str:
                 dists[vertex_id]['min_distance'] = possible_new_min_dist
                 dists[vertex_id]['parent'] = min_dist_vertex_id
 
-    return calculatedOutput(src_id, dists)
+    if calculate_outputs:
+        return calculatedOutput(src_id, dists)
+    else:
+        return dists
 
 def minDistanceVertexId(graph: NotDirectedGraph, dists: dict, vid: str) -> str:
     min_vertex_id = vid

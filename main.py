@@ -6,7 +6,8 @@ from graph import NotDirectedGraph
 from graph_builder import buildGraphFromFile
 from breath_first_search import breadthFirstSearch
 from eulerian_cycle import getEulerianTour
-from shortest_path import dijkstra
+from dijkstra import dijkstra
+from floyd_warshall import floydWarshall
 
 
 # on the first call to this function you must be SURE that "path" exists in the actual os.listdir()
@@ -67,21 +68,27 @@ def main():
 		graph = buildGraphFromFile(graph_path)
 		test_graph(graph_path, graph)
 
-		#Exercicio 2:
+		# Exercicio 2:
 		print('\nExercicio 2 (Busca em largura):\n')
 		print(breadthFirstSearch(graph, '1')[0])
 
-		#Exercicio 3:
+		# Exercicio 3:
 		print('\nExercicio 3 (Ciclo Euleriano):\n')
 		graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
 		graph = buildGraphFromFile(graph_path)
 		print(getEulerianTour(graph))
 
-		#Exercicio 4:
+		# Exercicio 4:
 		print('\nExercicio 4 (Dijkstra):\n')
 		graph_path = "./instances/caminho_minimo/fln_pequena.net"
 		graph = buildGraphFromFile(graph_path)
-		print(dijkstra(graph, '1'))
+		print(dijkstra(graph, '1', True))
+
+		# Exercicio 5:
+		print('\nExercicio 5 (Floyd-Warshall):\n')
+		graph_path = "./instances/caminho_minimo/fln_pequena.net"
+		graph = buildGraphFromFile(graph_path)
+		print(floydWarshall(graph))
 
 if __name__ == "__main__":
 	main()
