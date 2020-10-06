@@ -60,7 +60,7 @@ def main():
 				print("Graph in " + graph + ' has a problem')
 				return
 
-		print("Nothing wrong with the inputs.\nStarting tests...\n")
+		print("Nothing wrong with the inputs.\n")
 	else:
 		# Exercicio 1:
 		print('Exercicio 1 (Funções De Grafos):')
