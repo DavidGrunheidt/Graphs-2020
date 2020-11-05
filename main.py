@@ -62,33 +62,42 @@ def main():
 
 		print("Nothing wrong with the inputs.\n")
 	else:
-		# Exercicio 1:
-		print('Exercicio 1 (Funções De Grafos):')
-		graph_path = "./instances/caminho_minimo/fln_pequena.net"
-		graph = buildGraphFromFile(graph_path)
-		test_graph(graph_path, graph)
+		atividade1()
 
-		# Exercicio 2:
-		print('\nExercicio 2 (Busca em largura):\n')
-		print(breadthFirstSearch(graph, '1')[0])
+		atividade2()
 
-		# Exercicio 3:
-		print('\nExercicio 3 (Ciclo Euleriano):\n')
-		graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
-		graph = buildGraphFromFile(graph_path)
-		print(getEulerianTour(graph))
+def atividade1():
+	# Exercicio 1:
+	print('Exercicio 1 (Funções De Grafos):')
+	graph_path = "./instances/caminho_minimo/fln_pequena.net"
+	graph = buildGraphFromFile(graph_path)
+	test_graph(graph_path, graph)
 
-		# Exercicio 4:
-		print('\nExercicio 4 (Dijkstra):\n')
-		graph_path = "./instances/caminho_minimo/fln_pequena.net"
-		graph = buildGraphFromFile(graph_path)
-		print(dijkstra(graph, '1', True))
+	# Exercicio 2:
+	print('\nExercicio 2 (Busca em largura):\n')
+	print(breadthFirstSearch(graph, '1')[0])
 
-		# Exercicio 5:
-		print('\nExercicio 5 (Floyd-Warshall):\n')
-		graph_path = "./instances/caminho_minimo/fln_pequena.net"
-		graph = buildGraphFromFile(graph_path)
-		print(floydWarshall(graph))
+	# Exercicio 3:
+	print('\nExercicio 3 (Ciclo Euleriano):\n')
+	graph_path = "./instances/ciclo_euleriano/ContemCicloEuleriano.net"
+	graph = buildGraphFromFile(graph_path)
+	print(getEulerianTour(graph))
+
+	# Exercicio 4:
+	print('\nExercicio 4 (Dijkstra):\n')
+	graph_path = "./instances/caminho_minimo/fln_pequena.net"
+	graph = buildGraphFromFile(graph_path)
+	print(dijkstra(graph, '1', True))
+
+	# Exercicio 5:
+	print('\nExercicio 5 (Floyd-Warshall):\n')
+	graph_path = "./instances/caminho_minimo/fln_pequena.net"
+	graph = buildGraphFromFile(graph_path)
+	print(floydWarshall(graph))
+
+def atividade2():
+	# Atividade 2:
+	print('Exercicio 1 (Componentes Fortemente Conexas)')
 
 if __name__ == "__main__":
 	main()
