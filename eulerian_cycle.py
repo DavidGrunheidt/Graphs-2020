@@ -1,6 +1,6 @@
 import random
 
-from graph import NotDirectedGraph
+from not_directed_graph import NotDirectedGraph
 from breath_first_search import breadthFirstSearch
 
 # Exercicio 3: Ciclo Euleriano

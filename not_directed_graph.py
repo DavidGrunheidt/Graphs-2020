@@ -45,7 +45,7 @@ class NotDirectedGraph:
 		self.__rise_exception_invalid_ids(vertex_id)
 
 	# rotulo(v) -> O(1) (hasVertexId = O(1), self.graph[vertex_id] = O(1) (https://wiki.python.org/moin/TimeComplexity/#dict (get item)), self.graph[vertex_id].vertex_name = O(1))
-	def getVertexLabel(self, vertex_id: str) -> int:
+	def getVertexLabel(self, vertex_id: str) -> str:
 		if self.hasVertexId(vertex_id):
 			return self.graph[vertex_id].vertex_name
 

@@ -1,4 +1,4 @@
-from graph import NotDirectedGraph
+from not_directed_graph import NotDirectedGraph
 
 # Exercicio 2: Busca em largura
 def breadthFirstSearch(graph: NotDirectedGraph, inital_vertex_id: str) -> (str, set):

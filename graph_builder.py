@@ -1,10 +1,14 @@
-from graph import NotDirectedGraph
+from not_directed_graph import NotDirectedGraph
+from directed_graph import DirectedGraph
 
 # ler(arquivo)
-def buildGraphFromFile(file_path: str) -> 'Graph':
+def buildGraphFromFile(file_path: str, is_directed: bool = False):
 	graph_file = open(file_path, 'r')
 
-	graph = NotDirectedGraph()
+	if is_directed:
+		graph = DirectedGraph()
+	else:
+		graph = NotDirectedGraph()
 
 	graph_file.readline() #ignoring first line
 
@@ -13,7 +17,7 @@ def buildGraphFromFile(file_path: str) -> 'Graph':
 		line = line.rstrip("\n\r").rstrip(' ') #remove new line character and spaces in the end of the line
 
 		if build_vertices:
-			if line in {"*edges"}:
+			if line in {"*edges"} or line in {"*arcs"}:
 				build_vertices = False
 			else:
 				try:

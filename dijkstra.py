@@ -1,4 +1,4 @@
-from graph import NotDirectedGraph
+from not_directed_graph import NotDirectedGraph
 from typing import Union
 
 # Exercicio 4: Algoritmo de  Dijkstra

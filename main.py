@@ -2,15 +2,19 @@ import os
 import sys
 import random
 
-from graph import NotDirectedGraph
+from not_directed_graph import NotDirectedGraph
 from graph_builder import buildGraphFromFile
 from breath_first_search import breadthFirstSearch
 from eulerian_cycle import getEulerianTour
 from dijkstra import dijkstra
 from floyd_warshall import floydWarshall
-
+from topological_sorting import topologialSort
+from minimum_spanning_tree import minimumSpanningTree
 
 # on the first call to this function you must be SURE that "path" exists in the actual os.listdir()
+from strongly_connected_components import stronglyConnectedComponentes
+
+
 def buildEachInstance(path: str) -> 'dict of Graphs':
 	graphs = dict()
 
@@ -62,8 +66,7 @@ def main():
 
 		print("Nothing wrong with the inputs.\n")
 	else:
-		atividade1()
-
+		# atividade1()
 		atividade2()
 
 def atividade1():
@@ -96,8 +99,23 @@ def atividade1():
 	print(floydWarshall(graph))
 
 def atividade2():
-	# Atividade 2:
+	# Exercicio 1:
 	print('Exercicio 1 (Componentes Fortemente Conexas)')
+	graph_path = "./instances/dirigidos/dirigido2.net"
+	graph = buildGraphFromFile(graph_path, is_directed=True)
+	print(stronglyConnectedComponentes(graph))
+
+	# Exercicio 2:
+	print('Exercicio 2 (Ordenação Topológica)')
+	graph_path = "./instances/dirigidos/manha.net"
+	graph = buildGraphFromFile(graph_path, is_directed=True)
+	print(topologialSort(graph))
+
+	# Exercicio 2:
+	print('Exercicio 3 (Arvore geradora minima - Prim)')
+	graph_path = "./instances/arvore_geradora_minima/agm_tiny.net"
+	graph = buildGraphFromFile(graph_path, is_directed=True)
+	print(minimumSpanningTree(graph))
 
 if __name__ == "__main__":
 	main()
